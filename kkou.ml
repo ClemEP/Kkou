@@ -65,3 +65,35 @@ let affiche_liste_string = affiche_liste affiche_string;;
 let affiche_liste_char = affiche_liste (affiche_element print_char);;
 
 
+type 'a listekkou = [] |  ( :: ) of 'a * 'a listekkou;;
+
+
+(** moyenne [1;2;3] = 2 **)
+
+let moyenne liste = 
+  let rec aux l acc nbelm = match l with
+    |elmt1::n -> aux n (acc + elmt1) (nbelm + 1)
+    |[] -> acc/nbelm
+  in
+  aux liste 0 0 ;;
+
+(** ccat ["c";"o";"u";"c";"o";"u"] = "coucou" opérateur pour ajouter des chaines de charactères : ^  **)
+
+let ccat liste =
+  let rec aux l acc = match l with
+    |elmt1::n -> aux n (acc^elmt1)
+    |[] -> acc
+  in
+  aux liste ""
+;;
+      
+(** trouver un elt dans une liste, trouver [1;42;3] 42 = true **)
+let trouver liste elt =
+  let rec truc l = match l with
+    |elmt::n -> if (elt==elmt) then true else truc n
+    |[] -> false
+  in
+  (truc liste) 
+;;
+
+
